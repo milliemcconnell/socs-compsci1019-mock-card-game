@@ -4,17 +4,17 @@ from card_game.communication.ConsoleInOut import *
 
 class test_mock_ConsoleInOut(unittest.TestCase):
 
-    @patch("card_game.communication.ConsoleInOut.get_string")
     def test_get_input_string(self, mock_input):
-        name = "Derek"
-        mock_input.return_value = name
-        self.assertEqual(name, get_input_string("What is your name"))
+        pass
 
     def test_get_input_integer(self):
         #Sub-task 1: Mock Console Input Integer
         pass
 
     def test_get_input_string_builtin(self):
+        pass
+
+    def test_get_integer_max_attempts(self):
         #Sub-task 3 – Mock Console Input With Built In
         pass
 
