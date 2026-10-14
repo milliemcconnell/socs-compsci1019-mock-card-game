@@ -21,7 +21,7 @@ Mocking allows you to test the `CardGame` application completely. It allows you 
 
 # Sub-tasks
 
-Remember to read and implement the sub-tasks one at a time, following the given order. Do not move on to the next sub-task until the current one has been completed. Implement the required unit tests by working in the `test/test_mock_ConsoleInOut.py`, `test/test_mock_Game.py` & `test/test_mock_LoadCSV.py` files. 
+Remember to read and implement the sub-tasks one at a time, following the given order. Do not move on to the next sub-task until the current one has been completed. Implement the required unit tests by working in the `test/test_mock_ConsoleInOut.py`, `test/test_mock_Game.py`, `test/test_mock_LoadCSV.py` & `test/test_mock_Deck.py` files. 
 
 ## Sub-task 1 – Mock Console Input Integer
 
@@ -69,17 +69,16 @@ To mock the opening of a file.
 * Call `get_csv_rows` with any file name. The file does not need to exist, because the opening is mocked.
 * The mocked content has two lines, so assert that the first value of the second row equals the expected value `Xi`.
 
-## Sub-task 5 – Mock Random Card Selection
-
-To mock a non-deterministic function to make game behaviour predictable.
-
+## Sub-task 5 – Verify Mock Call Arguments
+To mock a function and verify the arguments passed to it.
 ### Requirement
+* Implement unit test test_play_a_card_from_deck_random in test/test_mock_Deck.py to mock the random selection of a card.
+* We want to test Deck.play_a_card_from_deck, which calls random.randint(0,index) to select a random card when the deck contains more than 8 cards. For a full deck of 52 cards, the upper bound is 51.
+* Mock random.randint in card_game.card.entity.Deck to return 0, so that the first card in the deck is selected.
+* Create a full deck of 52 cards using create_deck() and record the first card.
+* Call play_a_card_from_deck(deck). Since the mock returns 0, assert that the returned card matches the first card in the deck.
+* Verify that random.randint was called exactly once with the expected arguments (0, 51) using mock_randint.assert_called_once_with(0, 51).
 
-- Implement unit test `test_play_a_card_from_deck_random` in `test/test_mock_Deck.py` (or `test/test_mock_Game.py`).
-- We want to test `Deck.play_a_card_from_deck`. When the deck contains more than 8 cards, it calls `random.randint` to pick a random card index to play.
-- Mock the `randint` method on the `random` instance in `card_game.card.Deck` so that it returns `0` (the first card).
-- Create a full deck using `create_deck()`.
-- Record what the first card in the deck is, call `play_a_card_from_deck(deck)`, and assert that the returned card matches that first card.
 
 # Run Tests
 
